@@ -88,7 +88,7 @@ const onchangeEditFunc = (e)=>{
             <div className="dashboard-wrapper">
                 {
                     allTodo?.length <= 0 ? <span>No user data</span> :  <div className="todo-card-holder">
-                    {allTodo?.map((item,index)=>
+                    {allTodo?.reverse().map((item,index)=>
                     <div className="todo-card" key={index} onClick={()=>{localStorage.setItem('mytodo',JSON.stringify(item));nav(`/todo-list/${item.title}`)}}>
                     <header>{item?.title.length > 30 ? item?.title?.substr(0,30) + ' ...' : item?.title}</header>
                     <nav>{item?.content.length > 350 ? item?.content?.substr(0,350) + ' ...' : item?.content}</nav>
