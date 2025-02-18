@@ -24,14 +24,24 @@ const [editData,setEditData] = useState({
     content: '',
     show:false
 })
+const [count,setCount] = useState(0)
 
     const handleClick = ()=>{
         if(!myUser.isVerified){
             toast.error('Please verify your email first')
         }else{
             setOpenMymodal(true)
+            setCount(0)
         }
     }
+
+    useEffect(()=>{
+        if(count === 1){
+            addTodo(todoInfo,setTodoInfo,setOpenMymodal)
+        }
+    },[count])
+
+    // console.log(count)
 
     useEffect(()=>{
         getOneById(setMyUser)
@@ -102,7 +112,7 @@ const onchangeEditFunc = (e)=>{
         centered
         open={openMymodal}
         onOk={() => {
-            addTodo(todoInfo,setTodoInfo,setOpenMymodal)
+            setCount((prev)=>prev + 1)
         }}
         onCancel={() => setOpenMymodal(false)}
         width={{
