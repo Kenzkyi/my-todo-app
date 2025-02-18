@@ -35,7 +35,7 @@ const [editData,setEditData] = useState({
 
     useEffect(()=>{
         getOneById(setMyUser)
-    },[])
+    },[myUser])
 
     useEffect(()=>{
         getAllTodo(setAllTodo)
