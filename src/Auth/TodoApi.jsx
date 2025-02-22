@@ -23,7 +23,7 @@ export const addTodo = async (data,setData,modal) => {
         }, 2000);
 
     } catch (error) {
-        // console.log(error?.response?.data?.message)
+        console.log(error)
         if(error?.response?.data?.message === 'Action requires sign-in. Please log in to continue.'){
             toast.error('Please relogin to continue')
         }else{
@@ -53,12 +53,12 @@ export const editTodo = async (data,setState) => {
     const userInfo = JSON.parse(localStorage.getItem('userinfo'))
     const {id,title,content} = data
     try {
-        const res = await axios.patch(`${baseUrl}/update-content/${id}`,{title,content},{
+        const res = await axios.patch(`${baseUrl}/update-content/${id}`,{title:title.trim(),content:content.trim()},{
             headers:{
                 Authorization: `Bearer ${userInfo.token}`
             }
         })
-        console.log(res)
+        // console.log(res)
         toast.success(res?.data?.message)
         setTimeout(() => {
             setState((prev)=>{
